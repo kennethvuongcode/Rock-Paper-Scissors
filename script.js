@@ -18,31 +18,92 @@ function playRound(playerSelection, computerSelection) {
     switch (playerSelection) {
         case "rock":
             if (computerSelection === "paper")
-                return "You lose. Paper beats rock.";
+                return 0;
             else if (computerSelection === "scissors")
-                return "You win! Rock beats scissors.";
+                return 1;
             else 
-                return "You tied."
+                return 2;
         case "paper":
             if (computerSelection === "scissors")
-                return "You lose. Scissors beats paper.";
+                return 0;
             else if (computerSelection === "rock")
-                return "You win! Paper beats rock.";
+                return 1;
             else 
-                return "You tied."
+                return 2;
         case "scissors":
             if (computerSelection === "rock")
-                return "You lose. Rcok beats paper.";
+                return 0;
             else if (computerSelection === "paper")
-                return "You win! Scissors beat paper.";
+                return 1;
             else 
-                return "You tied."
+                return 2;
     }
 }
 
-console.log(getComputerChoice());
+function inputChoice(){
+    let i = 0;
+    let choice;
 
-playerSelection = prompt();
-computerSelection = prompt();
+    while (i < 1){
+        choice = prompt("Please select a choice.");
+        choice = choice.toLowerCase();
+        choice = choice.replace(" ", "");
 
-console.log(playRound(playerSelection, computerSelection));
+        if (choice === "rock" || choice === "paper" || choice === "scissors") 
+            i++;
+        else
+            alert("Please enter a valid selection.");
+    }
+    return choice;
+}
+
+function game(){
+    let playerSelection;
+    let computerSelection; 
+
+    let playerScore = 0;
+    let computerScore = 0;
+    let result;
+
+    for (let i = 1; i <= 5; i++){
+        console.log("Round " + i + ":");
+        
+        playerSelection = inputChoice();
+        console.log("You chose " + playerSelection);
+
+        computerSelection = getComputerChoice();
+        console.log("The computer chose " + computerSelection);
+
+        result = playRound(playerSelection, computerSelection);
+
+        switch (result) {
+            case 0:
+                computerScore++;
+                break;
+            case 1:
+                playerScore++;
+                break;
+        }
+    }
+
+    if (playerScore > computerScore)
+        console.log("You win!");
+    else if (computerScore > playerScore)
+        console.log("You lose.");
+    else 
+        console.log("You tied.")
+
+}
+
+// TESTING OF CODE //
+
+game();
+// for (let i = 0; i < 10; i++){
+// console.log(getComputerChoice());
+// console.log(i+1);
+// }
+
+// playerSelection = prompt();
+// computerSelection = getComputerChoice();
+
+// console.log(playRound(playerSelection, computerSelection));
