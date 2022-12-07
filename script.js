@@ -7,30 +7,19 @@ const scoreHeader = document.querySelector('#modal-header');
 const showPlayerScore = document.querySelectorAll('.player-score');
 const showCPUScore = document.querySelectorAll('.CPU-score');
 
-showPlayerScore.forEach(div => {
-    div.textContent = playerScore;
-})
-showCPUScore.forEach(div => {
-    div.textContent = computerScore;
-})
+showPlayerScore.forEach(div => {div.textContent = playerScore;})
+showCPUScore.forEach(div => {div.textContent = computerScore;})
 
 const rock = document.querySelector('#rock');
-rock.addEventListener('click', () => {
-    playRound("rock", getComputerChoice());
-});
+rock.addEventListener('click', () => {playRound("rock", getComputerChoice());});
 rock.textContent = "Water";
 
 const paper = document.querySelector('#paper');
-paper.addEventListener('click', () => {
-    playRound("paper", getComputerChoice());
-});
+paper.addEventListener('click', () => {    playRound("paper", getComputerChoice());});
 paper.textContent = "Fire";
 
 const scissors = document.querySelector('#scissors');
-scissors.addEventListener('click', () => {
-    playRound("scissors", getComputerChoice());
-
-});
+scissors.addEventListener('click', () => {playRound("scissors", getComputerChoice());});
 scissors.textContent = "Grass";
 
 const reset = document.querySelector('#reset-button');
@@ -43,21 +32,15 @@ controls.forEach(button => {
     button.addEventListener('mouseleave', () => button.classList.remove('hover-active'));     //remove transition
     });
 
-
-
 function resetGame() {
     playerScore = 0; computerScore = 0;
     modal.classList.remove('active');
-    overlay.classList.remove('active')
+    overlay.classList.remove('active');
 }
 
 function checkScore() {
-    showPlayerScore.forEach(div => {
-        div.textContent = playerScore;
-    })
-    showCPUScore.forEach(div => {
-        div.textContent = computerScore;
-    })
+    showPlayerScore.forEach(div => {div.textContent = playerScore;});
+    showCPUScore.forEach(div => {div.textContent = computerScore;});
 
     if (playerScore == 5){
         scoreHeader.textContent = "You won! You're now the Pokemon master.";
