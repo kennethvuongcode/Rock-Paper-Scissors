@@ -1,3 +1,80 @@
+let playerScore = 0;
+let computerScore = 0;
+
+const modal = document.querySelector('#modal');
+const overlay = document.querySelector('#overlay');
+const scoreHeader = document.querySelector('#modal-header');
+const showPlayerScore = document.querySelectorAll('.player-score');
+const showCPUScore = document.querySelectorAll('.CPU-score');
+
+showPlayerScore.forEach(div => {
+    div.textContent = playerScore;
+})
+showCPUScore.forEach(div => {
+    div.textContent = computerScore;
+})
+
+const rock = document.querySelector('#rock');
+rock.addEventListener('click', () => {
+    playRound("rock", getComputerChoice());
+});
+rock.textContent = "Water";
+
+const paper = document.querySelector('#paper');
+paper.addEventListener('click', () => {
+    playRound("paper", getComputerChoice());
+});
+paper.textContent = "Fire";
+
+const scissors = document.querySelector('#scissors');
+scissors.addEventListener('click', () => {
+    playRound("scissors", getComputerChoice());
+
+});
+scissors.textContent = "Grass";
+
+const reset = document.querySelector('#reset-button');
+reset.addEventListener('mouseup', resetGame);
+
+const controls = document.querySelectorAll('button');
+controls.forEach(button => {
+    button.addEventListener('mouseup', () => {checkScore();});
+    button.addEventListener('mouseenter', () => button.classList.add('hover-active'));        //add transition
+    button.addEventListener('mouseleave', () => button.classList.remove('hover-active'));     //remove transition
+    });
+
+
+
+function resetGame() {
+    playerScore = 0; computerScore = 0;
+    modal.classList.remove('active');
+    overlay.classList.remove('active')
+}
+
+function checkScore() {
+    showPlayerScore.forEach(div => {
+        div.textContent = playerScore;
+    })
+    showCPUScore.forEach(div => {
+        div.textContent = computerScore;
+    })
+
+    if (playerScore == 5){
+        scoreHeader.textContent = "You won! You're now the Pokemon master.";
+        modal.classList.add('active');
+        overlay.classList.add('active');
+        showPlayerScore.forEach(div => {
+            div.textContent = playerScore;
+        })
+    }
+
+    else if (computerScore == 5) {
+        scoreHeader.textContent = "Too bad, you lose LOL";
+        modal.classList.add('active');
+        overlay.classList.add('active');
+    }
+}
+
 function getComputerChoice() {
     let choice = Math.floor(Math.random() * 3);
     
@@ -17,26 +94,17 @@ function playRound(playerSelection, computerSelection) {
 
     switch (playerSelection) {
         case "rock":
-            if (computerSelection === "paper")
-                return 0;
-            else if (computerSelection === "scissors")
-                return 1;
-            else 
-                return 2;
+            if (computerSelection === "paper"){computerScore++;return 0;}
+            else if (computerSelection === "scissors"){playerScore++; return 1;}
+            else {return 2};
         case "paper":
-            if (computerSelection === "scissors")
-                return 0;
-            else if (computerSelection === "rock")
-                return 1;
-            else 
-                return 2;
+            if (computerSelection === "scissors"){computerScore++;return 0;}
+            else if (computerSelection === "rock"){playerScore++; return 1;}
+            else {return 2};
         case "scissors":
-            if (computerSelection === "rock")
-                return 0;
-            else if (computerSelection === "paper")
-                return 1;
-            else 
-                return 2;
+            if (computerSelection === "rock"){computerScore++;return 0;}
+            else if (computerSelection === "paper"){playerScore++; return 1;}
+            else {return 2};
     }
 }
 
@@ -57,47 +125,8 @@ function inputChoice(){
     return choice;
 }
 
-function game(){
-    let playerSelection;
-    let computerSelection; 
-
-    let playerScore = 0;
-    let computerScore = 0;
-    let result;
-
-    for (let i = 1; i <= 5; i++){
-        console.log("Round " + i + ":");
-        
-        playerSelection = inputChoice();
-        console.log("You chose " + playerSelection);
-
-        computerSelection = getComputerChoice();
-        console.log("The computer chose " + computerSelection);
-
-        result = playRound(playerSelection, computerSelection);
-
-        switch (result) {
-            case 0:
-                computerScore++;
-                break;
-            case 1:
-                playerScore++;
-                break;
-        }
-    }
-
-    if (playerScore > computerScore)
-        console.log("You win!");
-    else if (computerScore > playerScore)
-        console.log("You lose.");
-    else 
-        console.log("You tied.")
-
-}
 
 // TESTING OF CODE //
-
-game();
 // for (let i = 0; i < 10; i++){
 // console.log(getComputerChoice());
 // console.log(i+1);
@@ -107,3 +136,7 @@ game();
 // computerSelection = getComputerChoice();
 
 // console.log(playRound(playerSelection, computerSelection));
+
+// window.addEventListener('mouseover', function(e) {
+//     console.log(e.target.localName); 
+// })

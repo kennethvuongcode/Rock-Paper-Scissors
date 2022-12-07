@@ -1,0 +1,124 @@
+body {
+    background-image: url('./images/pokemon.jpg');
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'PF Tempesta Five', sans-serif;
+    text-align: center;
+    font-size: 30px;
+    height: 100vh;
+}   
+
+.header {
+    padding-top: 20px;
+    font-size: 40px;
+}
+
+.scoreboard {
+    display:flex;
+    width: 68%;
+    justify-content: space-between;
+    padding-top: 80px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 100%;
+    gap: 250px;
+}
+
+button {
+    width: 100px;
+    height: 200px;
+    flex: 1;
+    background-color: rgba(194, 181, 255, 0.658);
+    transition: all 0.3s;
+    border: rgb(36, 13, 0) solid 10px;
+    font-size: 30px;
+    font-family: 'PF Tempesta Five', sans-serif;
+
+}
+
+.hover-active {
+    transform: scale(1.1);
+    border-color: #00ffbf;
+    box-shadow: 0 0 1rem #00ccff;    
+}
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 400ms ease-in-out;
+    z-index: 10;
+    width: 800px;
+    height: 550px;
+    max-width: 80%;
+    background-color: beige;
+    border-color: black;
+    border-radius: 10px;
+    border: rgb(37, 21, 0) solid 7px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.modal.active {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+#overlay {
+    position: fixed;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: 400ms ease-in-out;
+    background-color: rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+}
+
+#overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal-body {
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+}
+
+#modal-header { 
+    text-align: center;
+    font-size: 40px;
+    margin-top: 30px;
+}
+
+.score-box {
+    height: 100px;
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#reset-button{
+    flex: 0 0 auto;
+    margin-top: 80px;
+    margin-bottom: 40px;
+    border: rgb(37, 21, 0) solid 7px;
+    height: 100px;
+    width: 400px;
+    background-color: #ffffff60;   
+}
+
+.score {font-weight: bold;}
